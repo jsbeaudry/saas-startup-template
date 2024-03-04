@@ -1,9 +1,21 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
+import Collection from "@/services/collection";
+import { useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  useEffect(() => {
+    const init = async () => {
+      const ideas = new Collection("ideas");
+
+      const list = await ideas.get();
+
+      console.log(list);
+    };
+    init();
+  }, []);
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
